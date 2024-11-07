@@ -23,6 +23,7 @@ public class Conexion {
     
     public static DataSource getDataSource(){
     if(dataSource != null){
+    dataSource = new BasicDataSource();
     dataSource.setUrl(URL_FINAL);
     dataSource.setUsername(USER);
     dataSource.setPassword(PASS);
