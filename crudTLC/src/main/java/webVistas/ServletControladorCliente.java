@@ -1,87 +1,123 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package webVistas;
 
+import datos.ClienteDaoJDBC;
+import dominiosJavaBeans.Cliente;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
  * @author tonym
  */
-@WebServlet(name = "ServletControladorCliente", urlPatterns = {"/ServletControladorCliente"})
+@WebServlet(name = "ServerControlador", urlPatterns = {"/ServerControlador"})
 public class ServletControladorCliente extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletControladorCliente</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletControladorCliente at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+ 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion=request.getParameter("accion");
+        if(accion != null){
+        switch(accion){
+            case "editar":
+                this.editarCliente(request, response);break;
+            case "eliminar":
+                this.eliminarCliente(request, response);break;
+            default:
+                this.accionDefault(request, response);
+        }
+        }else{
+        this.accionDefault(request, response);
+        }
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion=request.getParameter("accion");
+        if(accion != null){
+        switch(accion){
+            case "insertar":
+                this.insertarCliente(request, response);break;
+            case "modificar":
+                this.modificarCliente(request, response);break;
+            case "eliminar":
+                this.eliminarCliente(request, response);break;
+            default:
+                this.accionDefault(request, response);
+        }
+        }else{
+        this.accionDefault(request, response);
+        }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+     
+    protected void accionDefault(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<Cliente> clientes = new ClienteDaoJDBC().listar();
+        System.out.println("cliente = "+ clientes);// para ver en consola 
+        HttpSession sesion=request.getSession();
+        
+        sesion.setAttribute("clientes", clientes);
+        //sesion.setAttribute("TotalClientes", clientes);
+        //sesion.setAttribute("TotalClientes", this.calcularSaldoP(clientes));
+        
+        response.sendRedirect("cliente.jsp");
+    }
+    
+    protected void editarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int idCliente = Integer.parseInt(request.getParameter("idcliente"));
+        Cliente cliente = new ClienteDaoJDBC().buscar(new Cliente(idCliente));
+        request.setAttribute("cliente", cliente);
+        String jspEditar="WEB-INF/paginas/clientes/editarCliente.jsp";
+        request.getRequestDispatcher(jspEditar).forward(request, response);
+    }
+    
+    protected void modificarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int idCliente = Integer.parseInt(request.getParameter("idcliente"));
+        String nombre= request.getParameter("nombre");
+        Cliente cliente = new Cliente(idCliente, nombre);
+        int resgistroModificados = new ClienteDaoJDBC().update(cliente);
+        this.accionDefault(request, response);
+        //double saldo = 0;
+        //String saldoString = request.getParameter("saldo");
+        //if(saldoString != null && !"".equals(saldoString))
+        //saldo = Double.parseDouble(saldoString);   
+    }
+    
+    protected void insertarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //int idPersona = Integer.parseInt(request.getParameter("idPersona"));
+        String nombre= request.getParameter("nombre");
+        Cliente cliente = new Cliente(nombre);
+        int resgistroModificados = new ClienteDaoJDBC().insert(cliente);
+        this.accionDefault(request, response);
+        //double saldo = 0;
+        //String saldoString = request.getParameter("saldo");
+        //if(saldoString != null && !"".equals(saldoString))
+        //saldo = Double.parseDouble(saldoString);   
+    }
+    
+    protected void eliminarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int idCliente = Integer.parseInt(request.getParameter("idcliente"));
+        Cliente cliente = new Cliente(idCliente);
+        int registroModificado = new ClienteDaoJDBC().delete(cliente);
+        this.accionDefault(request, response);
+        
+    }
+   /*private double calcularSaldoTotalP(){
+    double saldoTotal = 0;
+    for(Persona persona: personas){
+    saldoTotal+=persona.getSaldo();
+        }
+    return saldoTotal;
+    }*/
 
 }
