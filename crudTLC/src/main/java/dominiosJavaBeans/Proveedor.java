@@ -4,17 +4,17 @@ package dominiosJavaBeans;
  *
  * @author luisa
  */
-public class Proveerdor {
+public class Proveedor {
     //Atributos
     private int idproveedor;
     private String nombre;
     
     //Constructores
 
-    public Proveerdor() {
+    public Proveedor() {
     }
 
-    public Proveerdor(int idproveedor, String nombre) {
+    public Proveedor(int idproveedor, String nombre) {
         this.idproveedor = idproveedor;
         this.nombre = nombre;
     }    
