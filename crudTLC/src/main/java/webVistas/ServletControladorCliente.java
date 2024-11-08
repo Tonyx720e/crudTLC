@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author tonym
  */
-@WebServlet(name = "ServerControlador", urlPatterns = {"/ServerControlador"})
+@WebServlet(name = "ServletControlador", urlPatterns = {"/ServletControlador"})
 public class ServletControladorCliente extends HttpServlet {
  
     @Override
