@@ -129,7 +129,7 @@ public class ClienteDaoJDBC {
     }
     public static void main(String[] args){
     ClienteDaoJDBC cliente = new ClienteDaoJDBC();
+    Cliente miCliente = new Cliente();
     cliente.listar();
-       
     }
 }
