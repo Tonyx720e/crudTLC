@@ -1,11 +1,8 @@
-<%-- 
-    Document   : listadoClientes
-    Created on : 6 nov 2024, 12:58:55
-    Author     : tonym
---%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="es_MX"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered table-hover table-responsive table-sm">
     <thead>
         <tr>
             <th>ID</th>
@@ -13,10 +10,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Aqui ID</td>
-            <td>Aqui Nombre</td>
-        </tr>
+        <c:forEach var="cliente" items="${clientes}" varStatus="status">
+            <tr>
+                <th scope="row">${status.count}</th>
+                <td>${cliente.nombre}</td>
+
+            </tr>
+        </c:forEach>
     </tbody>
 
 </table>
