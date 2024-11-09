@@ -4,7 +4,7 @@
     Author     : tonym
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <header id="main-header" class="py-2 bg-info text-white">
     <div class="container">
         <div class="row">
