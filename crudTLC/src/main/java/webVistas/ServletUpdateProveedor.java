@@ -48,9 +48,9 @@ public class ServletUpdateProveedor extends HttpServlet {
         int isUpdated = ProveedorDaoJDBC.updateProveerdor(proveedor);
 
         if (isUpdated == 1) {
-            mensaje = "El proveerdor se ha agregado correctamente";
+            mensaje = "El proveerdor se ha modificado correctamente";
         } else {
-            mensaje = "No se ha agregado ningún proveedor";
+            mensaje = "No se ha modificado ningún proveedor";
         }
         request.setAttribute("mensaje", mensaje);
         RequestDispatcher rd = request.getRequestDispatcher("confirmResp.jsp");

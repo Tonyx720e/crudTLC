@@ -44,9 +44,9 @@ public class ServletDeleteProveedor extends HttpServlet {
         int isDeleted = ProveedorDaoJDBC.deleteProveedor(idProveedor);
         
         if (isDeleted == 1) {
-            mensaje = "El proveerdor se ha eliminado correctamente";
+            mensaje = "El proveerdor " + nombre + " se ha eliminado correctamente";
         } else {
-            mensaje = "No se ha eliminado ningún proveedor";
+            mensaje = "El proveedor " + nombre + " no se ha eliminado  ";
         }
         request.setAttribute("mensaje", mensaje);
         RequestDispatcher rd = request.getRequestDispatcher("confirmResp.jsp");
