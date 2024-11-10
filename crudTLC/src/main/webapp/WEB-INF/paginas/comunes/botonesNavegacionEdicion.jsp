@@ -4,14 +4,18 @@
     Author     : tonym
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<section id="action" class="py-4 mb-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <a href="index.jsp" class="btn btn-ligth btn-block">
+                <i class="fas fa-arrow-left"></i> Regeresar al inicio
+            </a>
+        </div>
+        <div class="row">
+            <a href="${pageContext.request.contextPath}/ServletControladorCliente?accion=eliminar&idcliente=${cliente.idcliente}" method="post" class="was-validated " class="btn btn-danger btn-block">
+                <i class="fas fa-trash"></i> Eliminar 
+            </a>
+        </div>
+    </div>
+</section>
+

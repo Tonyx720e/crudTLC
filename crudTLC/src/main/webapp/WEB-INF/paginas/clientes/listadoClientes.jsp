@@ -1,17 +1,44 @@
-<%-- 
-    Document   : listadoClientes
-    Created on : 6 nov 2024, 12:58:55
-    Author     : tonym
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+        <fmt:setLocale value="es_MX" />
+        <section id="clientes">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Listado de CLientes</h4>
+                            </div>
+                            <table class="table table-striped table-bordered table-hover table-responsive table-sm">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="cliente" items="${clientes}" varStatus="status">
+                                        <tr>
+                                            <th scope="row">${status.count}</th>
+                                            <td>${cliente.nombre}</td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm"
+                                                    href="${pageContext.request.contextPath}/ServletControladorCliente?accion=editar&idcliente=${cliente.idcliente}">
+                                                    <i class="fas fa-angle-double-right"></i> Editar
+                                                </a>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+                                                <button class="btn btn-primary btn-sm">Modificar</button>
+                                                <button class="btn btn-danger btn-sm">Eliminar</button>
+                                            </td>
+
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <jsp:include page="agregarCliente.jsp" />
