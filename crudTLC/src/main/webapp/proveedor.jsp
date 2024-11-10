@@ -16,23 +16,32 @@
     </head>
     <body>
         <div class="container">
-            <h1 class="h1 text-center">Proveedores</h1>
-            <form action="ServletControladorProveedor"  method="POST">
-                <button type="summit"></button>
+            <h1 class="h1 text-center py-4 bg-primary text-light mb-0">Proveedores</h1>
+            <div class="bg-success py-4">
+            <h2 class="h2 text-center mb-3 text-light">Ingresar Nuevo Proveedores</h2>
+            <form action="ServletControladorProveedor"  method="POST" class="text-center w-50 mx-auto">
+                <div class="input-group flex-nowrap">                 
+                    <input type="text" class="form-control" placeholder="Nuevo Proveedor" aria-label="Nuevo Proveerdor" aria-describedby="addon-wrapping" name="nombre">
+                </div>
+                <button type="summit" class="btn btn-warning mt-2">Agregar</button>
             </form>
+            </div>
+            <div>
+            <h2 class="h2 text-center mt-4">Lista de Proveedores</h2>
             <ul class="list-group w-50 mx-auto">
                 <%
-                    ArrayList<Proveedor> proveedores = (ArrayList<Proveedor>)request.getAttribute("proveedores");
-                    for(Proveedor pr : proveedores){
+                    ArrayList<Proveedor> proveedores = (ArrayList<Proveedor>) request.getAttribute("proveedores");
+                    for (Proveedor pr : proveedores) {
                 %>
                 <li class="list-group-item list-group-item-action fs-4">
                     <a href="#" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover me-3 fs-6">Modificar</a>
                     <a href="#" class="link-darger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover me-5 fs-6">Eliminar</a>
-                    <p class="d-inline ms-5"><%= pr.getNombre() %></p>
-                    
+                    <p class="d-inline ms-5"><%= pr.getNombre()%></p>
+
                 </li>
-                <% } %>
+                <% }%>
             </ul>
+            </div>
         </div>
     </body>
 </html>

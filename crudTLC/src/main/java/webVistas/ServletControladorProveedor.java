@@ -39,14 +39,20 @@ public class ServletControladorProveedor extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //Probando metodo insertProveedor
-       Proveedor proveedor = new Proveedor();
-       String nombre = "Julian";
-       
-       proveedor.setNombre(nombre);
-       
-       ProveedorDaoJDBC.insertProveerdores(proveedor);
-           
-       
+        String mensaje;
+        Proveedor proveedor = new Proveedor();
+        String nombre = request.getParameter("nombre");
+        proveedor.setNombre(nombre);
+        int isInserted = ProveedorDaoJDBC.insertProveerdores(proveedor);
+        if(isInserted == 1){
+           mensaje = "El proveerdor se ha agregado correctamente";
+        }else{
+            mensaje = "No se a agregado ningún proveedor";
+        }
+        request.setAttribute("mensaje", mensaje);
+        RequestDispatcher rd = request.getRequestDispatcher("confirmResp.jsp");
+        rd.forward(request, response);
+        
     }
 
     @Override

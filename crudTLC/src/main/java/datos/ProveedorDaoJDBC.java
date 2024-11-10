@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+
 /**
  *
  * @author luisa
@@ -17,7 +18,7 @@ public class ProveedorDaoJDBC {
     public static final String SELECT = "SELECT idproveedor,nombre FROM proveedor;";
     public static final String INSERT = "INSERT INTO proveedor(nombre) values(?);";
     public static final String BUSCAR_POR_ID = "";
-    public static final String UPDATE = "";
+    public static final String UPDATE = "UPDATE `appmvcmodulo3`.`proveedor` SET `nombre` = '?' WHERE (`idproveedor` = '?')";
     public static final String DELETE = "";
 
     //Crear metodo para mostrar los proveedores de la BD
@@ -68,5 +69,24 @@ public class ProveedorDaoJDBC {
         
         return rows; 
     }
-   
+    public static int updateProveerdor(Proveedor proveedor){
+       Connection conn = null;
+       PreparedStatement st = null;
+       int rows = 0;
+       
+        try {
+            conn = Conexion.getConnection();
+            st = conn.prepareStatement(UPDATE);
+            st.setString(1,proveedor.getNombre());
+            st.setInt(2,proveedor.getIdproveedor());
+            rows = st.executeUpdate();
+        } catch (SQLException ex) {
+           ex.printStackTrace();
+        }finally {
+            Conexion.close(st);
+            Conexion.close(conn);
+        }
+      return rows; 
+    }
+      
 }
