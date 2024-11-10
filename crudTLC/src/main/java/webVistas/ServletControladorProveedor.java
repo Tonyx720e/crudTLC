@@ -43,11 +43,13 @@ public class ServletControladorProveedor extends HttpServlet {
         Proveedor proveedor = new Proveedor();
         String nombre = request.getParameter("nombre");
         proveedor.setNombre(nombre);
+        
+        
         int isInserted = ProveedorDaoJDBC.insertProveerdores(proveedor);
         if(isInserted == 1){
            mensaje = "El proveerdor se ha agregado correctamente";
         }else{
-            mensaje = "No se a agregado ningún proveedor";
+            mensaje = "No se ha agregado ningún proveedor";
         }
         request.setAttribute("mensaje", mensaje);
         RequestDispatcher rd = request.getRequestDispatcher("confirmResp.jsp");
