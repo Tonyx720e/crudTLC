@@ -41,7 +41,7 @@
                 %>
                 <li class="list-group-item list-group-item-action fs-4">
                     <a href="ServletUpdateProveedor<%= parameter%>" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover me-3 fs-6">Modificar</a>
-                    <a href="#" class="link-darger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover me-5 fs-6">Eliminar</a>
+                    <a href="ServletDeleteProveedor<%= parameter%>" class="link-darger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover me-5 fs-6">Eliminar</a>
                     <p class="d-inline ms-5"><%= pr.getNombre()%></p>
 
                 </li>

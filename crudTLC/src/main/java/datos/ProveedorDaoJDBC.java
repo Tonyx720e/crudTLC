@@ -16,9 +16,8 @@ public class ProveedorDaoJDBC {
 
     public static final String SELECT = "SELECT idproveedor,nombre FROM proveedor;";
     public static final String INSERT = "INSERT INTO proveedor(nombre) values(?);";
-    public static final String BUSCAR_POR_ID = "";
     public static final String UPDATE = "UPDATE `proveedor` SET `nombre` = ? WHERE (`idproveedor` = ?)";
-    public static final String DELETE = "";
+    public static final String DELETE = "DELETE FROM `appmvcmodulo3`.`proveedor` WHERE (`idproveedor` = ?)";
 
     //Crear metodo para mostrar los proveedores de la BD
     public static ArrayList<Proveedor> mostrarProveedores() {
@@ -30,7 +29,7 @@ public class ProveedorDaoJDBC {
         try {
             conn = Conexion.getConnection();
             st = conn.prepareStatement(SELECT);
-            rs = st.executeQuery(SELECT);
+            rs = st.executeQuery();
 
             while (rs.next()) {
                 Proveedor proveedor = new Proveedor();
@@ -42,6 +41,7 @@ public class ProveedorDaoJDBC {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+            System.out.println(ex.getMessage());
         } finally {
             Conexion.close(rs);
             Conexion.close(st);
@@ -62,6 +62,7 @@ public class ProveedorDaoJDBC {
             rows = st.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
+            System.out.println(ex.getMessage());
         } finally {
             Conexion.close(st);
             Conexion.close(conn);
@@ -79,6 +80,26 @@ public class ProveedorDaoJDBC {
             st = conn.prepareStatement(UPDATE);
             st.setString(1, proveedor.getNombre());
             st.setInt(2, proveedor.getIdproveedor());
+            rows = st.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+        } finally {
+            Conexion.close(st);
+            Conexion.close(conn);
+        }
+        return rows;
+    }
+
+    public static int deleteProveedor(int id) {
+        Connection conn = null;
+        PreparedStatement st = null;
+        int rows = 0;
+
+        try {
+            conn = Conexion.getConnection();
+            st = conn.prepareStatement(DELETE);
+            st.setInt(1, id);
             rows = st.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
