@@ -64,7 +64,25 @@ public class ProductoDaoJDBC {
         }
         return producto;
     }
-    
+        public int insert(Producto producto) {
+        Connection conn = null;
+        PreparedStatement stms = null;
+        int rows = 0;
+
+        try {
+            conn = Conexion.getConnection();
+            stms = conn.prepareStatement(SQL_INSERT);
+            stms.setString(1, producto.getNombre());
+
+            rows = stms.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        } finally {
+            Conexion.close(stms);
+            Conexion.close(conn);
+        }
+        return rows;
+    }
 
     }
 
