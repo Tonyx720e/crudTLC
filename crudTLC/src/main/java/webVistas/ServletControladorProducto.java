@@ -1,87 +1,119 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package webVistas;
 
+import datos.ProductoDaoJDBC;
+import dominiosJavaBeans.Producto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
-/**
- *
- * @author maria
- */
 @WebServlet(name = "ServletControladorProducto", urlPatterns = {"/ServletControladorProducto"})
-public class ServletControladorProducto extends HttpServlet {
+public class ServletControladorProducto extends HttpServlet { 
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletControladorProducto</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletControladorProducto at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
+@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion=request.getParameter("accion");
+        if(accion != null){
+        switch(accion){
+            case "editar":
+                this.editarProducto(request, response);break;
+            case "eliminar":
+                this.eliminarProducto(request, response);break;
+            default:
+                this.accionDefault(request, response);
+        }
+        }else{
+        this.accionDefault(request, response);
+        }
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+       
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion=request.getParameter("accion");
+        if(accion != null){
+        switch(accion){
+            case "insertar":
+                this.insertarProducto(request, response);break;
+            case "modificar":
+                this.modificarProducto(request, response);break;
+            case "eliminar":
+                this.eliminarProducto(request, response);break;
+            default:
+                this.accionDefault(request, response);
+        }
+        }else{
+        this.accionDefault(request, response);
+        }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+     protected void accionDefault(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<Producto> productos = new ProductoDaoJDBC().listar();
+        System.out.println("producto = "+ productos);
+        HttpSession sesion=request.getSession();
+        
+        sesion.setAttribute("productos", productos);
+        //sesion.setAttribute("TotalClientes", clientes);
+        //sesion.setAttribute("TotalClientes", this.calcularSaldoP(clientes));
+        
+        response.sendRedirect("producto.jsp");
+    }
+    protected void editarProducto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int idProducto = Integer.parseInt(request.getParameter("idproducto"));
+        Producto producto = new ProductoDaoJDBC().buscar(new Producto(idProducto));
+        request.setAttribute("producto", producto);
+        String jspEditar="WEB-INF/paginas/productos/editarProducto.jsp";
+        request.getRequestDispatcher(jspEditar).forward(request, response);
+    }
+    
+    protected void modificarProducto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int idProducto = Integer.parseInt(request.getParameter("idproducto"));
+        String nombre= request.getParameter("nombre");
+        Producto producto = new Producto(idProducto, nombre);
+        int resgistroModificados = new ProductoDaoJDBC().update(producto);
+        this.accionDefault(request, response);
+        //double saldo = 0;
+        //String saldoString = request.getParameter("saldo");
+        //if(saldoString != null && !"".equals(saldoString))
+        //saldo = Double.parseDouble(saldoString);   
+    }
+    
+    protected void insertarProducto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //int idPersona = Integer.parseInt(request.getParameter("idPersona"));
+        String nombre= request.getParameter("nombre");
+        Producto producto = new Producto(nombre);
+        int resgistroModificados = new ProductoDaoJDBC().insert(producto);
+        this.accionDefault(request, response);
+        //double saldo = 0;
+        //String saldoString = request.getParameter("saldo");
+        //if(saldoString != null && !"".equals(saldoString))
+        //saldo = Double.parseDouble(saldoString);   
+    }
+    
+    protected void eliminarProducto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int idProducto = Integer.parseInt(request.getParameter("idproducto"));
+        Producto producto = new Producto(idProducto);
+        int registroModificado = new ProductoDaoJDBC().delete(producto);
+        this.accionDefault(request, response);
+        
+    }
+   /*private double calcularSaldoTotalP(){
+    double saldoTotal = 0;
+    for(Persona persona: personas){
+    saldoTotal+=persona.getSaldo();
+        }
+    return saldoTotal;
+    }*/
 
 }
+

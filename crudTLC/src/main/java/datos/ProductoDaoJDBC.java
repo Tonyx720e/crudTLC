@@ -28,7 +28,7 @@ public class ProductoDaoJDBC {
             while (rs.next()) {
                 int idproducto = rs.getInt("idproducto");
                 String nombre = rs.getString("nombre");
-                System.out.println(nombre);
+                System.out.println(idproducto+" "+nombre+" ");
                 productos.add(new Producto(idproducto, nombre));
             }
         } catch (SQLException e) {
