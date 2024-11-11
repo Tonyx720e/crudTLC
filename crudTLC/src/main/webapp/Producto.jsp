@@ -19,7 +19,14 @@
         
     </head>
     <body>  
-        
+        <h1>Lista de Productos</h1>
+        <ul>
+            <c:forEach var= "producto" items=" $ {productos}">
+          
+                <li> ${producto.idProducto}${producto.nombre}</li>
+            </c:forEach>
+        </ul>
+
         <jsp:include page="WEB-INF/paginas/comunes/cabecera.jsp" />
         <jsp:include page="WEB-INF/paginas/comunes/botonesNavegacion.jsp" />
         
