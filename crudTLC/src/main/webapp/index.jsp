@@ -39,18 +39,18 @@
 <body>
     <jsp:include page="WEB-INF/paginas/comunes/cabecera.jsp" />
 
-    <div class="container py-2">
+    <div class="container py-4">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-success text-white">
                         <h4 class="text-center">Menu Principal</h4>
                     </div>
                     <table class="table table-striped table-bordered table-hover table-responsive table-sm">
                         <thead class="table-dark text-center">
                             <tr>
                                 <th class="text-center">Clientes</th>
-                                <th class="text">Proveedores</th>
+                                <th class="text-center">Proveedores</th>
                                 <th class="text-center">Productos</th>
                             </tr>
                         </thead>
@@ -58,18 +58,18 @@
 
                             <tr>
 
-                                <td>
+                                <td class="text-center">
                                     <a href="${pageContext.request.contextPath}/ServletControladorCliente"
                                         class="menu-button">Clientes</a>
 
                                 </td>
-                                <td>
+                                <td class="text-center">
 
                                     <a href="${pageContext.request.contextPath}/ServletControladorProveedor"
                                         class="menu-button">Proveedores</a>
 
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <a href="${pageContext.request.contextPath}/ServletControladorProducto"
                                         class="menu-button">Productos</a>
                                 </td>
