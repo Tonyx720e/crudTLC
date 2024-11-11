@@ -7,7 +7,7 @@
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Listado de CLientes</h4>
+                                <h4>Listado de Productos</h4>
                             </div>
                             <table class="table table-striped table-bordered table-hover table-responsive table-sm">
                                 <thead class="table-warning">
@@ -24,11 +24,11 @@
                                             <td>${producto.nombre}</td>
                                             <td>
                                                 <a class="btn btn-warning btn-sm"
-                                                    href="${pageContext.request.contextPath}/ServletControladorCliente?accion=editar&idcliente=${cliente.idcliente}">
+                                                    href="${pageContext.request.contextPath}/ServletControladorProducto?accion=editar&idproducto=${producto.idproducto}">
                                                     <i class="fas fa-angle-double-right"></i> Modificar
                                                 </a>
                                                 <a class="btn btn-danger btn-sm btn-block" 
-                                                    href="${pageContext.request.contextPath}/ServletControladorCliente?accion=eliminar&idcliente=${cliente.idcliente}" method="post" class="was-validated ">
+                                                    href="${pageContext.request.contextPath}/ServletControladorProducto?accion=eliminar&idproducto=${producto.idproducto}" method="post" class="was-validated ">
                                                     <i class="fas fa-trash"></i> Eliminar
                                                 </a>
                                             </td>
@@ -42,4 +42,4 @@
                 </div>
             </div>
         </section>
-        
+        <jsp:include page="agregarProducto.jsp" />

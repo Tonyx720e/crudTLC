@@ -49,7 +49,7 @@ public class ProductoDaoJDBC {
         try {
             conn = Conexion.getConnection();
             stms = conn.prepareStatement(SQL_POR_ID);
-            stms.setInt(1, producto.getProducto());
+            stms.setInt(1, producto.getIdproducto());
             rs = stms.executeQuery();
             rs.next();
 
@@ -97,7 +97,7 @@ public class ProductoDaoJDBC {
             stms = conn.prepareStatement(SQL_UPDATE);
 
             stms.setString(1, producto.getNombre());
-            stms.setInt(2, producto.getProducto());
+            stms.setInt(2, producto.getIdproducto());
 
             rows = stms.executeUpdate();
         } catch (SQLException e) {
@@ -117,7 +117,7 @@ public class ProductoDaoJDBC {
         try {
             conn = Conexion.getConnection();
             stms = conn.prepareStatement(SQL_DELETE);
-            stms.setInt(1, producto.getProducto());
+            stms.setInt(1, producto.getIdproducto());
 
             rows = stms.executeUpdate();
         } catch (SQLException e) {
@@ -129,9 +129,4 @@ public class ProductoDaoJDBC {
         return rows;
     }
 
-    public static void main(String[] args) {
-        ProductoDaoJDBC producto = new ProductoDaoJDBC();
-        Producto miProducto = new Producto();
-        producto.listar();
-    }
 }

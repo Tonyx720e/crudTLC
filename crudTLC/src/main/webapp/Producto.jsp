@@ -21,7 +21,7 @@
     <body>  
 
         <jsp:include page="WEB-INF/paginas/comunes/cabecera.jsp" />
-        <jsp:include page="WEB-INF/paginas/comunes/botonesNavegacion.jsp" />
+        <jsp:include page="WEB-INF/paginas/comunes/botonesNavProducto.jsp" />
         <jsp:include page="WEB-INF/paginas/productos/listadoProductos.jsp" />
         <jsp:include page="WEB-INF/paginas/comunes/piePagina.jsp" />
 

@@ -21,11 +21,11 @@ public class Producto {
     public Producto() {
     }
 
-    public int getProducto() {
+    public int getIdproducto() { // Cambiado de getProducto() a getIdproducto()
         return idproducto;
     }
 
-    public void setProducto(int idproducto) {
+    public void setIdproducto(int idproducto) { // Cambiado de setProducto() a setIdproducto()
         this.idproducto = idproducto;
     }
 
@@ -35,12 +35,10 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-
     }
 
     @Override
     public String toString() {
         return "Producto{" + "idproducto=" + idproducto + ", nombre=" + nombre + '}';
     }
-
 }
