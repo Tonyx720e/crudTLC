@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h1>
-                    <i class="fas fa-cog"> Aplicacion CRUD de cabecera</i>
+                    <i class="fas fa-cog">Aplicacion CRUD</i>
                 </h1>
                 
             </div>
