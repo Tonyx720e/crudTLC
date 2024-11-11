@@ -1,8 +1,3 @@
-<%-- 
-    Document   : proveedor
-    Created on : Nov 7, 2024, 9:04:39 PM
-    Author     : luisa
---%>
 
 <%@page import="dominiosJavaBeans.Proveedor"%>
 <%@page import="java.util.ArrayList"%>
@@ -17,7 +12,7 @@
     </head>
     <body>
         <div class="container">
-            <jsp:include page="IncludeNav.jsp"/>
+            <jsp:include page="WEB-INF/paginas/proveedor/IncludeNav.jsp"/>
             <h1 class="h1 text-center py-4 bg-primary text-light mb-0">Proveedores</h1>
             <div class="bg-success py-4">
                 <h2 class="h2 text-center mb-3 text-light">Ingresar Nuevo Proveedores</h2>

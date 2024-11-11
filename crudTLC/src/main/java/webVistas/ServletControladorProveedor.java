@@ -52,7 +52,7 @@ public class ServletControladorProveedor extends HttpServlet {
             mensaje = "No se ha agregado ningún proveedor";
         }
         request.setAttribute("mensaje", mensaje);
-        RequestDispatcher rd = request.getRequestDispatcher("confirmResp.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/paginas/proveedor/confirmResp.jsp");
         rd.forward(request, response);
         
     }
