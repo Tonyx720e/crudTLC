@@ -16,7 +16,7 @@
     <body>
         <div class="container w-50 mt-5">
             <jsp:include page="IncludeNav.jsp"/>
-            <div class="py-3 bg-warning">
+            <div class="py-3 bg-success">
                <p class="text-center fs-3 mt-3 text-light">${mensaje}</p>  
             </div>
            
