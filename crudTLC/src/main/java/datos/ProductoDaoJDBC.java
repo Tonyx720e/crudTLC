@@ -13,9 +13,9 @@ public class ProductoDaoJDBC {
     private static final String SQL_SELECT = "SELECT idproducto,nombre FROM producto;";
     private static final String SQL_POR_ID = "SELECT idproducto, nombre FROM producto WHERE idproducto = ?";
     private static final String SQL_INSERT = "INSERT INTO producto(nombre) values(?);";
-    private static final String SQL__UPDATE = "UPDATE `producto` SET `nombre` = ? WHERE (`idproducto` = ?)";
+    private static final String SQL_UPDATE = "UPDATE `producto` SET `nombre` = ? WHERE (`idproducto` = ?)";
     private static final String SQL_DELETE = "DELETE FROM `appmvcmodulo3`.`producto` WHERE (`idproducto` = ?)";
-   
+  
     public List<Producto> listar() {
         Connection conn = null;
         PreparedStatement stms = null;
@@ -83,7 +83,28 @@ public class ProductoDaoJDBC {
         }
         return rows;
     }
+        public int update(Producto producto) {
 
+        Connection conn = null;
+        PreparedStatement stms = null;
+        int rows = 0;
+
+        try {
+            conn = Conexion.getConnection();
+            stms = conn.prepareStatement(SQL_UPDATE);
+
+            stms.setString(1, producto.getNombre());
+            stms.setInt(2, producto.getIdproducto());
+
+            rows = stms.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            Conexion.close(stms);
+            Conexion.close(conn);
+        }
+        return rows;
+    }
     }
 
 
