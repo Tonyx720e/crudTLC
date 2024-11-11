@@ -1,10 +1,11 @@
 package dominiosJavaBeans;
 
 public class Producto {
-   private int idproducto;
-   private String nombre;
-   
-   public Producto(int idproducto, String nombre) {
+
+    private int idproducto;
+    private String nombre;
+
+    public Producto(int idproducto, String nombre) {
         this.idproducto = idproducto;
         this.nombre = nombre;
     }
@@ -12,12 +13,14 @@ public class Producto {
     public Producto(int idproducto) {
         this.idproducto = idproducto;
     }
+
     public Producto(String nombre) {
         this.nombre = nombre;
     }
-   
-    public Producto(){
+
+    public Producto() {
     }
+
     public int getProducto() {
         return idproducto;
     }
@@ -32,7 +35,6 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-        
 
     }
 
@@ -44,5 +46,5 @@ public class Producto {
     public int getIdproducto() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-   
+
 }

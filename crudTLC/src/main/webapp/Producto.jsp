@@ -16,22 +16,22 @@
 
         <!-- FontAwesome -->
         <script src="https://kit.fontawesome.com/3556f97ea4.js" crossorigin="anonymous"></script>
-        
+
     </head>
     <body>  
         <h1>Lista de Productos</h1>
         <ul>
-            <c:forEach var= "producto" items=" $ {productos}">
-          
+            <c:forEach var= "producto" items="${productos}">
+
                 <li> ${producto.idProducto}${producto.nombre}</li>
-            </c:forEach>
+                </c:forEach>
         </ul>
 
         <jsp:include page="WEB-INF/paginas/comunes/cabecera.jsp" />
         <jsp:include page="WEB-INF/paginas/comunes/botonesNavegacion.jsp" />
-        
+
         <jsp:include page="WEB-INF/paginas/clientes/listadoClientes.jsp" />
-        
+
         <jsp:include page="WEB-INF/paginas/comunes/piePagina.jsp" />
 
     </body>
