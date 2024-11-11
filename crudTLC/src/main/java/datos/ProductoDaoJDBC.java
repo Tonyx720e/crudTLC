@@ -75,7 +75,7 @@ public class ProductoDaoJDBC {
             stms.setString(1, producto.getNombre());
 
             rows = stms.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace(System.out);
         } finally {
             Conexion.close(stms);
@@ -105,16 +105,28 @@ public class ProductoDaoJDBC {
         }
         return rows;
     }
+        public int delete(Producto producto){
+    Connection conn = null;
+        PreparedStatement stms = null;
+        int rows = 0;
+
+        try {
+            conn = Conexion.getConnection();
+            stms = conn.prepareStatement(SQL_DELETE);
+            stms.setInt(1, producto.getIdproducto());
+
+            rows = stms.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            Conexion.close(stms);
+            Conexion.close(conn);
+        }
+        return rows;
     }
-
-
-
-
-
-
-
-
-  
-
-
-
+    public static void main(String[] args){
+    ProductoDaoJDBC producto = new ProductoDaoJDBC();
+    Producto miProducto= new Producto();
+    producto.listar();
+    }
+}
