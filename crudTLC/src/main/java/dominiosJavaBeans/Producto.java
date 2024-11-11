@@ -40,5 +40,9 @@ public class Producto {
     public String toString() {
         return "Producto{" + "idproducto=" + idproducto + ", nombre=" + nombre + '}';
     }
+
+    public int getIdproducto() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
    
 }
