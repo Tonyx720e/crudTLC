@@ -1,38 +1,50 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>main</groupId>
+    
+    <!-- Información básica del proyecto -->
+    <groupId>com.mycompany</groupId>
     <artifactId>crudTLC</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>crudTLC-1.0-SNAPSHOT</name>
-    
+
+    <!-- Configuración del compilador y encoding -->
     <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jakartaee>10.0.0</jakartaee>
     </properties>
-    
+
+    <!-- Dependencias necesarias -->
     <dependencies>
+        <!-- Jakarta EE API (scope provided, ya que GlassFish lo proporciona) -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>${jakartaee}</version>
+            <version>10.0.0</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Conector MySQL para conectarse a la base de datos MySQL -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.30</version>
+            <version>8.0.26</version>
         </dependency>
+
+        <!-- Apache Commons DBCP para el manejo de conexiones de la base de datos -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>2.12.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
-    
+
+    <!-- Configuración del proceso de build -->
     <build>
         <plugins>
+            <!-- Plugin de Maven para compilar el código en JDK 11 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -41,11 +53,6 @@
                     <source>11</source>
                     <target>11</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.2</version>
             </plugin>
         </plugins>
     </build>

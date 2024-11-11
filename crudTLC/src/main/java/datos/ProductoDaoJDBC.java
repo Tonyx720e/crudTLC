@@ -10,10 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoDaoJDBC {
-
-    private static final String SQL_SELECT = "SELECT idproducto,nombre FROM producto;";
+    private static final String SQL_SELECT = "SELECT idproducto, nombre FROM producto";
     private static final String SQL_POR_ID = "SELECT idproducto, nombre FROM producto WHERE idproducto = ?";
-    private static final String SQL_INSERT = "INSERT INTO producto(nombre) values(?);";
+    private static final String SQL_INSERT = "INSERT INTO producto(nombre) values(?)";
     private static final String SQL_UPDATE = "UPDATE `producto` SET `nombre` = ? WHERE (`idproducto` = ?)";
     private static final String SQL_DELETE = "DELETE FROM `appmvcmodulo3`.`producto` WHERE (`idproducto` = ?)";
 
@@ -29,7 +28,7 @@ public class ProductoDaoJDBC {
             while (rs.next()) {
                 int idproducto = rs.getInt("idproducto");
                 String nombre = rs.getString("nombre");
-                System.out.println(idproducto + " " + nombre + " ");
+                
                 productos.add(new Producto(idproducto, nombre));
             }
         } catch (SQLException e) {
@@ -50,7 +49,7 @@ public class ProductoDaoJDBC {
         try {
             conn = Conexion.getConnection();
             stms = conn.prepareStatement(SQL_POR_ID);
-            stms.setInt(1, producto.getIdproducto());
+            stms.setInt(1, producto.getProducto());
             rs = stms.executeQuery();
             rs.next();
 
@@ -98,7 +97,7 @@ public class ProductoDaoJDBC {
             stms = conn.prepareStatement(SQL_UPDATE);
 
             stms.setString(1, producto.getNombre());
-            stms.setInt(2, producto.getIdproducto());
+            stms.setInt(2, producto.getProducto());
 
             rows = stms.executeUpdate();
         } catch (SQLException e) {
@@ -118,7 +117,7 @@ public class ProductoDaoJDBC {
         try {
             conn = Conexion.getConnection();
             stms = conn.prepareStatement(SQL_DELETE);
-            stms.setInt(1, producto.getIdproducto());
+            stms.setInt(1, producto.getProducto());
 
             rows = stms.executeUpdate();
         } catch (SQLException e) {

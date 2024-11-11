@@ -59,13 +59,8 @@ public class ServletControladorCliente extends HttpServlet {
     protected void accionDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Cliente> clientes = new ClienteDaoJDBC().listar();
-        System.out.println("cliente = "+ clientes);// para ver en consola 
         HttpSession sesion=request.getSession();
-        
         sesion.setAttribute("clientes", clientes);
-        //sesion.setAttribute("TotalClientes", clientes);
-        //sesion.setAttribute("TotalClientes", this.calcularSaldoP(clientes));
-        
         response.sendRedirect("cliente.jsp");
     }
     

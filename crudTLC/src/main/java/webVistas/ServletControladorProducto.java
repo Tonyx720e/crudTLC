@@ -59,13 +59,10 @@ public class ServletControladorProducto extends HttpServlet {
 
     protected void accionDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Producto> productos = new ProductoDaoJDBC().listar();
-        System.out.println("producto = " + productos);
-        HttpSession sesion = request.getSession();
-
+        List<Producto> productos = new ProductoDaoJDBC().listar(); 
+        HttpSession sesion=request.getSession();
         sesion.setAttribute("productos", productos);
-
-        response.sendRedirect("producto.jsp");
+        response.sendRedirect("Producto.jsp");
     }
 
     protected void editarProducto(HttpServletRequest request, HttpServletResponse response)
