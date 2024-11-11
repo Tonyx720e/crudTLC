@@ -30,7 +30,7 @@ public class ServletUpdateProveedor extends HttpServlet {
 
         request.setAttribute("newNombre", newNombre);
         request.setAttribute("id", id);
-        RequestDispatcher rd = request.getRequestDispatcher("UpdateProveedor.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/paginas/proveedor/UpdateProveedor.jsp");
         rd.forward(request, response);
     }
 
@@ -53,7 +53,7 @@ public class ServletUpdateProveedor extends HttpServlet {
             mensaje = "No se ha modificado ningún proveedor";
         }
         request.setAttribute("mensaje", mensaje);
-        RequestDispatcher rd = request.getRequestDispatcher("confirmResp.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/paginas/proveedor/confirmResp.jsp");
         rd.forward(request, response);
 
     }

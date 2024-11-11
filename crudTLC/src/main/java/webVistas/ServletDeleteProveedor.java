@@ -30,7 +30,7 @@ public class ServletDeleteProveedor extends HttpServlet {
         
         request.setAttribute("id", id);
         request.setAttribute("nombre",nombre);
-        RequestDispatcher rd = request.getRequestDispatcher("DeleteProveedor.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/paginas/proveedor/DeleteProveedor.jsp");
         rd.forward(request, response);
     }
 
@@ -49,7 +49,7 @@ public class ServletDeleteProveedor extends HttpServlet {
             mensaje = "El proveedor " + nombre + " no se ha eliminado  ";
         }
         request.setAttribute("mensaje", mensaje);
-        RequestDispatcher rd = request.getRequestDispatcher("confirmResp.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/paginas/proveedor/confirmResp.jsp");
         rd.forward(request, response);
                
     }

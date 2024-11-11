@@ -9,12 +9,13 @@
                             <div class="card-header">
                                 <h4>Listado de Productos</h4>
                             </div>
-                            <table class="table table-striped table-bordered table-hover table-responsive table-sm">
-                                <thead class="table-warning">
-                                    <tr>
+                            <table class="table table-striped table-bordered table-hover table-responsive table-sm ">
+                                <thead class="table-info">
+                                    <tr tr class="table-warning">
+                                        
                                         <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Acciones</th>
+                                        <th>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -23,12 +24,21 @@
                                             <th scope="row">${status.count}</th>
                                             <td>${producto.nombre}</td>
                                             <td>
+<<<<<<< HEAD
                                                 <a class="btn btn-warning btn-sm"
                                                     href="${pageContext.request.contextPath}/ServletControladorProducto?accion=editar&idproducto=${producto.idproducto}">
                                                     <i class="fas fa-angle-double-right"></i> Modificar
                                                 </a>
                                                 <a class="btn btn-danger btn-sm btn-block" 
                                                     href="${pageContext.request.contextPath}/ServletControladorProducto?accion=eliminar&idproducto=${producto.idproducto}" method="post" class="was-validated ">
+=======
+                                                <a class="btn btn-success btn-lg"
+                                                    href="${pageContext.request.contextPath}/ServletControladorCliente?accion=editar&idcliente=${cliente.idcliente}">
+                                                    <i class="fas fa-angle-double-right"></i> Modificar
+                                                </a>
+                                                <a class="btn btn-danger btn-lg btn-block" 
+                                                    href="${pageContext.request.contextPath}/ServletControladorCliente?accion=eliminar&idcliente=${cliente.idcliente}" method="post" class="was-validated ">
+>>>>>>> 34708607e7a0fafefe7e3a8f6438c8510f897890
                                                     <i class="fas fa-trash"></i> Eliminar
                                                 </a>
                                             </td>
