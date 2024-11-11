@@ -1,8 +1,8 @@
 <ul class="nav nav-tabs py-3 fs-4 mb-0 pb-0 bg-secondary">
     <li class="nav-item bg-warning me-1 text-reset rounded-start-3">
-        <a class="nav-link text-light" href="#">Inicio</a>
+        <a class="nav-link text-light" href="index.jsp">Inicio</a>
     </li>
     <li class="nav-item bg-warning text-reset rounded-start-3">
         <a class="nav-link text-light" href="ServletControladorProveedor">Lista Proveedores</a>
     </li>
-</ul>
+   </ul> 
