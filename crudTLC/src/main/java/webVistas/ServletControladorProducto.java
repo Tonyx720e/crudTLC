@@ -55,14 +55,14 @@ public class ServletControladorProducto extends HttpServlet {
      protected void accionDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Producto> productos = new ProductoDaoJDBC().listar();
-        System.out.println("producto = "+ productos);
+        //System.out.println("producto = "+ productos);
         HttpSession sesion=request.getSession();
         
         sesion.setAttribute("productos", productos);
         //sesion.setAttribute("TotalClientes", clientes);
         //sesion.setAttribute("TotalClientes", this.calcularSaldoP(clientes));
         
-        response.sendRedirect("producto.jsp");
+        response.sendRedirect("Producto.jsp");
     }
     protected void editarProducto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
