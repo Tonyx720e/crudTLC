@@ -11,10 +11,10 @@ import java.util.List;
 public class ClienteDaoJDBC {
 
     private static final String SQL_SELECT = "SELECT idcliente, nombre FROM cliente";
-    private static final String SQL_POR_ID = "SELECT idcliente, nombre FROM cliente WHERE id_persona = ?";
+    private static final String SQL_POR_ID = "SELECT idcliente, nombre FROM cliente WHERE idcliente = ?";
     private static final String SQL_INSERT = "INSERT INTO cliente (nombre) VALUES(?)";
-    private static final String SQL_UPDATE = "UPDATE cliente SET nombre= ? WHERE id_cliente = ? ";
-    private static final String SQL_DELETE = "DELETE FROM cliente WHERE id_cliente = ?";
+    private static final String SQL_UPDATE = "UPDATE cliente SET nombre= ? WHERE idcliente = ? ";
+    private static final String SQL_DELETE = "DELETE FROM cliente WHERE idcliente = ?";
 
     public List<Cliente> listar() {
         Connection conn = null;

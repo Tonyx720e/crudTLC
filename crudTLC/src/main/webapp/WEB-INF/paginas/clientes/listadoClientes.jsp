@@ -23,13 +23,14 @@
                                             <th scope="row">${status.count}</th>
                                             <td>${cliente.nombre}</td>
                                             <td>
-                                                <a class="btn btn-primary btn-sm"
+                                                <a class="btn btn-warning btn-sm"
                                                     href="${pageContext.request.contextPath}/ServletControladorCliente?accion=editar&idcliente=${cliente.idcliente}">
-                                                    <i class="fas fa-angle-double-right"></i> Editar
+                                                    <i class="fas fa-angle-double-right"></i> Modificar
                                                 </a>
-
-                                                <button class="btn btn-primary btn-sm">Modificar</button>
-                                                <button class="btn btn-danger btn-sm">Eliminar</button>
+                                                <a class="btn btn-danger btn-sm btn-block" 
+                                                    href="${pageContext.request.contextPath}/ServletControladorCliente?accion=eliminar&idcliente=${cliente.idcliente}" method="post" class="was-validated ">
+                                                    <i class="fas fa-trash"></i> Eliminar
+                                                </a>
                                             </td>
 
                                         </tr>
